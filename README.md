@@ -1,101 +1,51 @@
 # Optimized Inference at the Edge with Intel® Tools and Technologies 
 This workshop will walk you through a computer vision workflow using the latest Intel® technologies and comprehensive toolkits including support for deep learning algorithms that help accelerate smart video applications. You will learn how to optimize and improve performance with and without external accelerators and utilize tools to help you identify the best hardware configuration for your needs. This workshop will also outline the various frameworks and topologies supported by Intel® accelerator tools. 
 
-## How to Get Started
-   
-> :warning: For the in-class training, the hardware and software setup part has already been done on the workshop hardware. In-class training participants should directly move to Workshop Agenda section. 
-
-In order to use this workshop content, you will need to setup your hardware and install the Intel® Distribution of OpenVINO™ toolkit for infering your computer vision application.  
-### 1. Hardware requirements
-The hardware requirements are mentioned in the System Requirement section of the [install guide](https://software.intel.com/en-us/articles/OpenVINO-Install-Linux)
-
-### 2. Operating System
-These labs have been validated on Ubuntu* 16.04 OS. 
-
-### 3. Software installation steps
-#### a). Install Intel® Distribution of OpenVINO™ toolkit 
-Use steps described in the [install guide](https://software.intel.com/en-us/articles/OpenVINO-Install-Linux)
-to install the Intel® Distribution of OpenVINO™ toolkit, configure Model Optimizer, run the demos, additional steps to install Intel® Media SDK and OpenCL™ mentioned in the the guide. 
-
-#### b). Install git, python libraries
-	sudo apt install git
-	sudo apt install python3-pip
-    
-#### c). Run the demo scipts and compile samples
-Delete $HOME/inference_engine_samples folder if it already exists. 
-
-	rm -rf $HOME/inference_engine_samples
+> :warning: Labs of this workshop have been validated with **Intel® Distribution of OpenVINO™ toolkit 2021.1 (openvino_toolkit_2021.1.110)**. Videos shown below is based on OpenVINO 2020R2, might be slightly different from the slides, but the content is largely the same. **FPGA plugin will no longer be supported by the OpenVINO stardard release, you can find the FPGA content from ealier branches.**
 	
-Run demo scripts (any one of them or both if you want to both the demos) which will generate the folder $HOME/inference_engine_samples with the current Intel® Distribution of OpenVINO™ toolkit built. 
-
-	cd /opt/intel/computer_vision_sdk/deployment_tools/demo
-	./demo_squeezenet_download_convert_run.sh
-	./demo_security_barrier_camera.sh
-	
-	sudo chown -R username.username $HOME/inference_engine_samples
-	cd $HOME/inference_engine_samples
-	make
-	
-#### d). Download models using model downloader scripts in Intel® Distribution of OpenVINO™ toolkit installed folder
-   - Install python3 (version 3.5.2 or newer) 
-   - Install yaml and requests modules with command:
-
-	sudo -E pip3 install pyyaml requests
-   
-   - Run model downloader script to download example deep learning models
-  		
-	cd /opt/intel/computer_vision_sdk/deployment_tools/model_downloader
-	sudo python3 downloader.py --name mobilenet-ssd,ssd300,ssd512,squeezenet1.1
-
-#### e). Install Intel® System Studio, VNC viewer and Setup on development machine
-
-Follow the [guide](./up2-vision-kit/setup_intel_system_studio.md) to install Intel® System Studio and VNC viewer on your development machine.
-	
-> :warning: This workshop content has been validated with Intel® Distribution of OpenVINO™ toolkit version R5 (computer_vision_sdk_2018.5.445). 
-
-		
 ## Workshop Agenda
-* **Smart Video/Computer Vision Tools Overview**
-  - Slides - [Introduction to Smart Video Tools](./presentations/01-Introduction-to-Intel-Smart-Video-Tools.pdf)
+* **Intel® Distribution of OpenVINO™ toolkit Overview** - [[Slides]](./presentations/Intel%20Distribution%20of%20OpenVINO%20Toolkit%20Overview.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-1-intel-distribution-of-openvino-toolkit-overview.html)
+  - Lab Setup - [Lab Setup Instructions](./Lab_setup.md)
+  > :warning: Please make sure you have gone through all the steps in the **Lab Setup**, all the Labs below are based on the assumption that user has correctly installed OpenVINO toolkit on the local development system.
+  
+* **Model Optimizer** - [[Slides]](./presentations/Model%20Optimizer.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-2-model-optimizer.html)
+  - Lab1 - [Optimize a Caffe* Classification Model - SqueezeNet v1.1](./Labs/Optimize_Caffe_squeezeNet.md)
+  - Lab2 - [Optimize a Tensorflow* Object Detection Model - SSD with MobileNet](./Labs/Optimize_Tensorflow_Mobilenet-SSD.md)
 
-* **Training a Deep Learning Model**
-  - Slides - [Training a Deep Learning Model](./presentations/DL_training_model.pdf)
-  - Lab - [Training a Deep Learning Model](./dl-model-training/README.md)
-  
-* **Basic End to End Object Detection Inference Example**
-  - Slides - [Basic End to End Object Detection Example](./presentations/02-Basic-End-to-End-Object-Detection-Example.pdf)
-  - Lab - [Basic End to End Object Detection Example](./object-detection/README.md)
+* **Inference Engine** - [[Slides]](./presentations/Inference%20Engine.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-4-inference-engine.html)
+  - Lab3 - [Run Classfication Sample application with the optimized SqueezeNet v1.1](./Labs/Run_Classification_Sample.md)
+  - Lab4 - [Run Object Detection Sample application with the optimized SSD with MobileNet](./Labs/Run_Object_Detection_Sample.md)
+  - Lab5 - [Run Benchmark App with Hetero plugin](./Labs/Run_Benchmark_Hetero.md)
 
-* **Hardware Heterogeneity**
-  - Lab - [Hardware Heterogeneity](./hardware-heterogeneity/README.md)
+* **Accelerators based on Intel® Movidius™ Vision Processing Unit** - [[Slides]](./presentations/Accelerators%20based%20on%20Intel®%20Movidius™%20Vision%20Processing%20Unit.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-8-accelerators-based-on-intel-movidius-vision-processing-unit.html)
+  - Lab6 - [HW Acceleration with Intel® Movidius™ Neural Compute Stick2](./Labs/Run_Samples_with_NCS2.md)
+  - Lab7 - [Run Benchmark App with Multi plugin](./Labs/Run_Benchmark_Multi.md)
+  
+* **Multiple Models in One Application**  - [[Slides]](./presentations/Multiple%20Models%20in%20One%20Application.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-6-multiple-models-in-one-application.html)
+  - Lab8 - [Run Security Barrier Demo Application](./Labs/Run_Security_Barrier_Demo.md) 
+  
+* **Deep Learning Workbench** - [[Slides]](./presentations/Deep%20Learning%20Workbench.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-11-deep-learning-workbench.html)
+  - Demo - [DL Workbench Walkthrough](https://software.intel.com/content/www/us/en/develop/videos/part-12-demonstration-of-deep-learning-workbench.html)
+  - [Short Video Tutorials on YouTube](https://www.youtube.com/playlist?list=PLTseHiQLIfGM6ltiaeh9fL8qfxiE-u4fw)
+  
+* **Deep Learning Streamer** - [[Slides]](./presentations/Deep%20Learning%20streamer.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-13-deep-learning-streamer.html)
+  - Lab9 - [Build a Media Analytic Pipeline with DL Streamer](./Labs/Build_DL_Streamer_Pipeline.md)
+  - Demo - [DL Streamer Pipeline](https://software.intel.com/content/www/us/en/develop/videos/part-14-demonstration-of-deep-learning-streamer.html)
 
-* **HW Acceleration with Intel® Movidius™ Neural Compute Stick**
-  - Lab - [HW Acceleration with Intel® Movidius™ Neural Compute Stick](./HW-Acceleration-with-Movidious-NCS/README.md) 
-  
-* **FPGA Inference Accelerator**
-  - Slides - [HW Acceleration with Intel® FPGA](./presentations/04-HW-Acceleration-with-FPGA.pdf)
+* **Intel® DevCloud for the Edge** - [[Slides]](./presentations/Intel%20DevCloud%20for%20the%20Edge.pdf) [[Video]](https://software.intel.com/content/www/us/en/develop/videos/part-15-introduction-to-intel-devcloud-for-the-edge.html)
+  - Demo - [Intel® DevCloud for the Edge Walkthrough](https://software.intel.com/content/www/us/en/develop/videos/part-16-demonstration-of-intel-devcloud-for-the-edge.html)
 
-* **Optimization Tools and Techniques** 
-  - Slides - [Optimization Tools and Techniques](/presentations/04_05_Optimization_and_advanced_analytics.pdf)
-  - Lab 1 - [Optimization Tools and Techniques](./optimization-tools-and-techniques/README.md)
-  - Lab 2- [Intel® VTune™ Amplifier tutorial](./optimization-tools-and-techniques/README_VTune.md)
+
+## Further Reading Materials
+* **Support for Microsoft ONNX runtime in OpenVINO**
+  - Slides - [ONNX runtime and OpenVINO](./presentations/ONNX_runtime_and_OpenVINO.pdf)
   
-* **Advanced Video Analytics**
-  - Lab - [Multiple models usage example](./advanced-video-analytics/multiple_models.md)
-  - Lab - [Tensor Flow example](./advanced-video-analytics/tensor_flow.md)
+* **Healthcare applications and Required Features**
+  - Slides - [Healthcare Applications](./presentations/Healthcare_presentation.pdf)
   
-* **UP²\* AI Vision Development kit as Edge**
-  - Setup - [Development machine and Internet Connection Sharing](./up2-vision-kit/dev_machine_setup.md)
-  - Lab - [Interact face detection on UP2 kit using Intel® System Studio](./up2-vision-kit/interact-face-detection.md)
-  
-* **Additional Examples - Reference Implementations**
-  - Industrial 
-  	- [Restricted Zone Notifier](https://github.com/intel-iot-devkit/restricted-zone-notifier-cpp)
-  	- [Object Size Detector](https://github.com/intel-iot-devkit/object-size-detector-cpp)
-  - Retail 
-  	- [Store Traffic Monitor](https://github.com/intel-iot-devkit/store-traffic-monitor)
-	- [Shopper Gaze Monitor](https://github.com/intel-iot-devkit/shopper-gaze-monitor-cpp)
-  
+* [**Install Intel® Distribution of OpenVINO™ toolkit for** **Linux*** **from a Docker*** **Image**](https://docs.openvinotoolkit.org/latest/openvino_docs_install_guides_installing_openvino_docker_linux.html)
+
+
 > #### Disclaimer
 
 > Intel and the Intel logo are trademarks of Intel Corporation or its subsidiaries in the U.S. and/or other countries. 
